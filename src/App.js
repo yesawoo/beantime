@@ -6,6 +6,7 @@ import moment from "moment";
  * Uses Tailwind CSS for styling
  * Tailwind file is imported in App.css
  */
+/* eslint-disable no-unused-expressions */
 
 var BEANTIME = "-04:00:00";
 
