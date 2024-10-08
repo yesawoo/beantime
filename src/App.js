@@ -7,8 +7,17 @@ import moment from "moment";
  * Tailwind file is imported in App.css
  */
 
-function Time() {
+var BEANTIME = "-04:00:00";
 
+String.prototype.replaceAt = function (index, replacement) {
+  return this.substring(0, index) + replacement + this.substring(index + replacement.length);
+}
+
+var x = BEANTIME;
+x = x.replaceAt(4, "5").replaceAt(5, "8").replaceAt(7, "1").replaceAt(8, "7");
+BEANTIME = x;
+
+function Time() {
   const [time, setTime] = React.useState(moment.utc());
 
   React.useEffect(() => {
@@ -17,7 +26,7 @@ function Time() {
     }, 1000);
   }, []);
 
-  return <span>{time.utcOffset("-04:58:17").format("dddd, MMMM Do YYYY, HH:mm:ss")}</span>;
+  return <span>{time.utcOffset(BEANTIME).format("dddd, MMMM Do YYYY, HH:mm:ss")}</span>;
 }
 
 export default function App() {
