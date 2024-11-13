@@ -1,0 +1,78 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>single page react boilerplate</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="kokaneka">
+<style>
+@import url(https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css);body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-image:linear-gradient(30deg,blue,purple);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;height:100vh;margin:0;width:100vh}code{font-family:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace}#clock{color:#fff;font-size:5vh;left:50%;position:absolute;top:50%;transform:translate(-50%,-50%)}.app{background-color:#4286f4;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12'%3E%3Cpath d='M9.8 12 0 2.2V.8l10 10 10-10v1.4L10.2 12h-.4zm-4 0L0 6.2V4.8L7.2 12H5.8zm8.4 0L20 6.2V4.8L12.8 12h1.4zM9.8 0l.2.2.2-.2h-.4zm-4 0L10 4.2 14.2 0h-1.4L10 2.8 7.2 0H5.8z' fill='%233076e8' fill-opacity='.4' fill-rule='evenodd'/%3E%3C/svg%3E")}
+/*# sourceMappingURL=main.f3e46033.css.map*/
+</style>
+</head>
+
+<body>
+  <div id="place-app"> </div>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/moment@2.30.1/moment.js" crossorigin></script>
+
+  <script type="text/babel">
+
+var BEANTIME = "-04:00:00";
+
+String.prototype.replaceAt = function (index, replacement) {
+  return this.substring(0, index) + replacement + this.substring(index + replacement.length);
+}
+
+var x = BEANTIME;
+x = x.replaceAt(4, "5").replaceAt(5, "8").replaceAt(7, "1").replaceAt(8, "7");
+BEANTIME = x;
+
+function Time() {
+  const [time, setTime] = React.useState(moment.utc());
+
+  React.useEffect(() => {
+    setInterval(() => {
+      setTime(moment.utc());
+    }, 1000);
+  }, []);
+
+  return <span>{time.utcOffset(BEANTIME).format("dddd, MMMM Do YYYY, HH:mm:ss")}</span>;
+}
+
+var App = (props) =>{
+  return (
+    <div>
+      <div>
+        <div id="clock"><Time></Time> BT</div>
+      </div>
+
+      <footer class="fixed bottom-0 left-0 z-20 w-full p-4">
+        <div class="text-sm text-gray-500 text-center sm:text-center dark:text-gray-400">
+          <span>Bean Time is the Official Time Zone of the Furry Universe</span>
+        </div>
+      </footer>
+
+    </div>
+
+  )
+}
+
+//    var App = (props) => {
+//            return (
+//                <div >
+//                    Hello Universe!
+//                </div>
+//            );
+//        };
+        ReactDOM.render(
+            App(),
+            document.getElementById('place-app')
+        );
+  </script>
+</body>
+</html>
